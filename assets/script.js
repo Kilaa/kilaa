@@ -17,19 +17,33 @@ const slides = [
 	}
 ]
 
+let compteur = 0;
+
+const dotscontainer = document.getElementById('dots');
+slides.forEach(element => {
+	var dot = document.createElement('div');
+	dot.setAttribute('class','dot');
+	dotscontainer.appendChild(dot);	
+});
+
 
 // Sélectionnez flèches
-let arrowLeft = document.querySelector('.arrow_left');
-let arrowRight = document.querySelector('.arrow_right');
+const arrowLeft = document.querySelector('#arrow_left');
+const arrowRight = document.querySelector('#arrow_right');
 
 // event listener flèche gauche
 arrowLeft.addEventListener('click', function() {
     console.log('Clic sur la flèche gauche');
-    
+    compteur -= 1;
+	if(0>compteur){compteur=slides.length-1;}
+	console.log(compteur)
 });
 
 // event listener flèche droite
 arrowRight.addEventListener('click', function() {
     console.log('Clic sur la flèche droite');
-    
+    compteur += 1;
+	if(slides.length-1 < compteur){compteur=0;}
+	console.log(compteur)
 });
+
